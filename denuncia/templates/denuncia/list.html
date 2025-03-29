@@ -1,0 +1,51 @@
+{%extends 'base.html'%}
+
+{%block title%}Lista de Denúncias{%endblock%}
+
+{%block content%}
+<div class="offset-1 col-10  list-div">
+<h1>Lista de Denúncias</h1>
+    <a href="/denuncia/add">
+        <div class="col-2 add-div">
+            <i class="fas fa-plus"></i>
+        </div>
+    </a>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    <ul class="list-group">
+        {%for den in denuncia%}
+
+        <li class="list-group-item d-flex justify-content-between align-items-center denuncia-item">
+            <div>
+            <h5 class="mb-1">
+                <a href="/denuncia/{{ den.id }}" class="text-decoration-none text-dark">
+                    {{ den.descricao }}
+                </a>
+            </h5>
+            
+            <small class="text-muted">Status: {{ den.get_status_denuncia_display }}</small>
+        </div>
+        <div class="btn-group">
+            <a href="/denuncia/delete/{{ den.id }}" class="btn btn-sm btn-danger">
+
+            <span><i class="fas fa-trash-alt"></i></span>
+            </a>
+
+            <a href="/denuncia/edit/{{den.id}}" class="btn btn-sm btn-warning">
+            <span><i class="fas fa-edit"></i></span>
+            </a>
+            </div>
+        </li>
+
+        {% endfor%}
+    </ul>
+</div>
+{%endblock%}
+
