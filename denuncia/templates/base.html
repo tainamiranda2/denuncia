@@ -21,16 +21,26 @@
           
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
               <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
                 <li class="nav-item active">
                   <a class="nav-link" href="/">Lista</a>
                 </li>
+
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Cadastro </a>
+                    <a class="nav-link" href="/denuncia/add">Cadastro </a>
                 </li>
+                <li class="nav-item active">
+                  <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link nav-link">Sair</button>
+                </form>
+              </li>
+              {% else %}
                   <li class="nav-item active">
-                  <a class="nav-link" href="#"> </a>
-                </li>
-            </ul>
+                      <a class="nav-link" href="/accounts/login">Entrar</a>
+                  </li>
+                {% endif %}
+                </ul>
              
             </div>
         </nav>
