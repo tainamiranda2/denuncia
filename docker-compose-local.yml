@@ -1,8 +1,0 @@
-version: '3.8'
-services:
-   fanhub-dev-mysql:
-       image: mysql:8.0
-       network_mode: host
-       environment:
-           MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
-           MYSQL_DATABASE: $MYSQL_DB
